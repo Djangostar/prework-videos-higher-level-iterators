@@ -12,9 +12,9 @@
 
 + Hi folks, it's Ian from Flatiron School. In this video, we're going to look at some higher level iterators in Ruby. Our learning goals for this video - by the end of this video, you should be able to:
   + Identify some common manipulations for lists of data
-  + Use each to iterate over a list of items and do something with it
-  + Use map/collect to create a list of new values
-  + Use select to return a filtered list of values
+  + Use `each` to iterate over a list of items and do something with it
+  + Use `map`/`collect` to create a list of new values
+  + Use `select` to return a filtered list of values
   + Explain how to find other Enumerable methods in ruby
 + So let's go ahead and get started.
 + In programming, we often deal with lists of data. One of the powerful things about code is that you can process long lists of data in a repeatable way.
@@ -43,17 +43,10 @@ people.each do |person|
   puts person[:email]
 end
 ```
-+ That's great - .each is a great method when we want to do something to each item in our list of users.
-+ Right now, we're just printing this to our console. But you could imagine, if we had a method that could send an email, we could also use this to email each person. Just imagine that we have this method called `send_email_to` that can take in this hash, and that method would magically know how to send a nice email to this person.
-```ruby
-people.each do |person|
-   send_email_to(person)
-end
-```
-+ So, you have to imagine that we have that method, but this is something that we could definitely do using each. .each is a great method when we want to do something with each element.
++ That's great - `each` is a great method when we want to do something to each item in our list of users.
 + Say, though, that we want to manipulate the data first. So let's pretend that I need an array of just email addresses - maybe I want to give that list to someone, and I want them to have the emails but not the other data for some reason.
-+ How might I transform this list of hashes into a list of just email addresses?
-+ One way would be to make a new array, and then iterate over the people using the each method, and for each person I could shovel the email address into the new array.
++ How might I transform this list of hashes into a list of strings of just email addresses?
++ One way would be to make a new array, and then iterate over the people using the `each` method, and for each person I could shovel the email address into the new array.
 ```ruby
 def email_addresses(people)
   email_addresses = []
@@ -67,8 +60,8 @@ end
 + So we end up with a bit of a sandwich here - where the variable `email_addresses` is the bread on top and bottom, and then the manipulation is in the middle.
 + Anytime we see this, this is a bit of a code smell - this gives me a clue that there's a better way to do this.
 + In Ruby, we can use a method called `map`
-+ Map works similarly to `.each` in that you call it on an array, and it takes a block.
-+ Instead of just doing something on each element though, map will actually create a new array based on whatever the block returns.
++ `map` works similarly to `.each` in that you call it on an array, and it takes a block.
++ Instead of just doing something on each element though, `map` will actually create a new array based on whatever the block returns.
 + So here's kind of a weird example:
 ```ruby
 people.map do |person|
@@ -113,17 +106,16 @@ end
 ```
 + So this code does exactly the same thing as before - it's just a little bit more expressive and shorter to read.
 + You as the programmer know - ok, they're using select here, so they're filtering down the values. You don't have to read all the details about it.
-+ Really the goal here is to just make our code as expressive as possible, and this really expresses an idea.
-+ So using the correct iterator is really helpful for that.
++ Really, the goal here is to just make our code as expressive as possible, and this really expresses an idea. Using the correct iterator is really helpful for that.
 + There are way too many iterators to demonstrate in one video, but I'll do a quick recap of a few others
-+ .find is similar to select, but it will return to you a single object, whichever one meets the condition first. So this is good if you think you only have one thing that meets the condition - for example, if I'm searching by email address or something like that
-+ sort_by let's you sort by a specific condition, so I could sort this list either by height or by email address
-+ inject is great if you want to get a new value. So maybe I want to know the total height in inches of everybody, I can inject 0 into this list and then add the height to it each times
+  + `find` is similar to select, but it will return to you a single object, whichever one meets the condition first. So this is good if you think you only have one thing that meets the condition - for example, if I'm searching by email address or something like that
+  + `sort_by` let's you sort by a specific condition, so I could sort this list either by height or by email address
+  + `inject` is great if you want to get a new value. So maybe I want to know the total height in inches of everybody, I can inject `0` into this list and then add the height to it each times
 + Again, those are a just a few. There are tons of these that you can look up, I'll link to the documentation here that I'm browsing to that you can check them out.
 + That's it for this video - just to recap:
   + We identify some common manipulations for lists of data - doing something with data, getting a new array, filtering or sorting the list
-  + We used the .each method to iterate over a list of items and do something with it
-  + We used the map/collect method to create a list of new values
-  + We used  the select to return a filtered list of values
-  + And we talked about how to find other Enumerable methods in Ruby, such as find, sort_by, inject, and many more
+  + We used the `each` method to iterate over a list of items and do something with it
+  + We used the `map`/`collect` method to create a list of new values
+  + We used  the `select` to return a filtered list of values
+  + And we talked about how to find other Enumerable methods in Ruby, such as `find`, `sort_by`, `inject`, and many more
 + Thanks for watching - happy coding!
